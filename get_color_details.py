@@ -5,11 +5,11 @@ import pickle
 # Image processing imports
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
 from scipy.stats import itemfreq
 
 
 IMAGE_DIR = "thumbnails/"
+DETAILS_FILENAME = "data/collection-color-details.csv"
 COLOR_DELIMITER = "$"
 
 # Turns a list of (BGR) into delimited string of color hexes
@@ -20,13 +20,13 @@ def convert_bgr2hex(bgrs):
 # Quantize image into n colors and return those colors as list of (BGR)
 def get_dominant_colors(n, img):
   # Convert img into float32 array
-  RGBarray = img.reshape((-1,3))
-  RGBarray = np.float32(RGBarray)
+  arr = img.reshape((-1,3))
+  arr = np.float32(arr)
 
   # Define k-means hyperparameters
   criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
   flags = cv2.KMEANS_RANDOM_CENTERS
-  ret,label,centers = cv2.kmeans(RGBarray, n, None, criteria, 10, flags)
+  ret,label,centers = cv2.kmeans(arr, n, None, criteria, 10, flags)
 
   # Convert back to uint8
   centers = np.uint8(centers)
@@ -47,10 +47,16 @@ def get_contrast(img):
   vmax = np.nanmax(values)
   return f"{(vmax - vmin) / (vmax + vmin):.4f}"
 
+'''
+  Load the collection, find the thumbnail names,
+  and then process the corresponding thumbnail.
+  Write this information to DETAILS_FILENAME.
+'''
+
 with open('data/wcma-collection.pickle', 'rb') as f:
   collection = pickle.load(f)
 
-with open('data/collection-color-details.csv', 'w+') as color_file:
+with open(DETAILS_FILENAME, 'w+') as color_file:
   for id in collection:
     artwork = collection[id]
     if "filename" in artwork:
