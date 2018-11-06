@@ -1,2 +1,2 @@
 # wcma-viz
-Code for my WCMA dataset visualization
+For now, these are just scripts I used to process the WCMA database.
