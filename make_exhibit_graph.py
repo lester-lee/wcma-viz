@@ -17,8 +17,6 @@ with open("json/exhibitions.json") as f:
 with open("data/wcma-collection.pickle", "rb") as f:
   collection = pickle.load(f)
 
-G = None
-
 def save_graph():
   G = nx.Graph()
   for ex in exhibitions:
@@ -28,7 +26,9 @@ def save_graph():
       obj_ids = [o["ObjectID"] for o in objects]
       pairs = list(itertools.combinations(obj_ids, 2))
       for p in pairs:
-        G.add_edge(p[0], p[1], id=ex_id)  # Use object ID as nodes
+        print(p)
+        if str(p[0]) in collection and str(p[1]) in collection:
+          G.add_edge(p[0], p[1], id=ex_id)  # Use object ID as nodes
 
   with open("data/exhibition_graph.pickle", "wb") as f:
     pickle.dump(G,f)
@@ -39,12 +39,13 @@ def load_graph():
 
 def dump_to_json():
   G = load_graph()
-  print(G.nodes)
   graph_json = nx.node_link_data(G)
   with open("json/collection_graph.json", "w") as f:
     json.dump(graph_json, f)
 
 if "-save" in sys.argv:
   save_graph()
+  print("Saved!")
 if "-json" in sys.argv:
   dump_to_json()
+  print("Dumped to collection_graph.json!")
