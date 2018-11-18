@@ -40,6 +40,10 @@ def load_graph():
 def dump_to_json():
   G = load_graph()
   graph_json = nx.node_link_data(G)
+  with open("json/wcma-collection--color.json", "r", encoding="utf8") as f:
+    node_json = json.load(f)
+  node_list = [node_json[x] for x in node_json]
+  graph_json["nodes"] = node_list
   with open("json/collection_graph.json", "w") as f:
     json.dump(graph_json, f)
 
