@@ -1,0 +1,12 @@
+title: WCMA Collection Visualization
+email: contact@lester-lee.com
+
+#Site settings
+excerpt_length: 55
+
+#Build settings
+markdown: kramdown
+permalink: pretty
+future: true
+exclude:
+  - thumbnails
