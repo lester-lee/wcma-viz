@@ -14,10 +14,13 @@ body{
 
 circle{
   box-shadow: 0 0 3px black;
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 .Card{
-  display: flex;
+  display: none;
   flex-flow: column;
   position: fixed;
   top: 75px;
@@ -27,4 +30,7 @@ circle{
   height: 400px;
   border: 1px solid #ddd;
   background: #fff;
+  &.--active{
+    display: flex;
+  }
 }

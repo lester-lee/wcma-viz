@@ -18,6 +18,11 @@ $.when(node_data, exhibit_data, exhibit_nodes, graph_data).then(function (vnode,
 let simulation;
 let radius = 10;
 
+// Keep track of visible nodes and links
+let nodes, links;
+let saved_node;
+let is_locked = false;
+
 function visualize() {
   const width = window.innerWidth;
   const height = window.innerHeight;
@@ -76,8 +81,8 @@ function visualize() {
     return _.contains(connected_node_ids, n.id);
   });
 
-  let nodes = _.union(initial_nodes, connected_nodes);
-  let links = initial_links;
+  nodes = _.union(initial_nodes, connected_nodes);
+  links = initial_links;
 
   console.log(connected_nodes);
   console.log(initial_nodes);
@@ -146,7 +151,14 @@ function handleMouseOver(d, i){
 }
 function handleMouseOut(d, i) {
   d3.select(this).attr('r', radius);
+  if (is_locked){
+    updateCard(saved_node);
+  }else {
+    $('.Card').removeClass('--active');
+  }
 }
 function handleClick(d, i) {
-  console.log("click");
+  is_locked = true;
+  saved_node = d;
+  updateCard(saved_node);
 }

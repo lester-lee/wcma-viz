@@ -10,6 +10,7 @@ function updateCard(node){
     $('.CardDimensions').text(data.dimensions);
     $('.CardDescription').text(data.description);
     $('.CardLink').attr('href', 'http://egallery.williams.edu/search/'+data.title);
+    updateThumbnail(node._id);
   }else if (node.node_type === "exhibit"){
     let data = exhibit_data[node._id];
     console.log(data);
@@ -19,4 +20,18 @@ function updateCard(node){
     $('.CardDimensions').text("");
     $('.CardDescription').text(data.CurNotes);
   }
+  $('.Card').addClass('--active');
 }
+
+function updateThumbnail(id){
+  console.log("Pretend thumbnail is updated!");
+}
+
+$('.CardNeighbors').on('click', function () {
+  // Look at all neighbors of 
+});
+
+$('.CardClose').on('click', function (){
+  $('.Card').removeClass('--active');
+  is_locked = false;
+});
