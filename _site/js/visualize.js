@@ -1,12 +1,14 @@
 /* Load json files */
 let node_data = $.getJSON("/json/wcma-collection--color.json");
+let exhibit_nodes = $.getJSON("/json/exhibit_nodes.json");
 let exhibit_data = $.getJSON("/json/exhibitions--refactored.json");
 let graph_data = $.getJSON("/json/collection_graph.json");
 
-$.when(node_data, exhibit_data, graph_data).then(function (vnode, vex, vg) {
+$.when(node_data, exhibit_data, exhibit_nodes, graph_data).then(function (vnode, vex, vexn, vg) {
   console.log("Data loaded.");
   node_data = vnode[0];
   exhibit_data = vex[0];
+  exhibit_nodes = vexn[0];
   graph_data = vg[0];
   visualize();
 });
@@ -37,25 +39,44 @@ function visualize() {
     .id(function (link) {
       return link.id;
     })
-    .distance(50);
+    .distance(100);
 
   let simulation = d3.forceSimulation()
     .force('link', linkForce)
     .force('charge', d3.forceManyBody().strength(-25))
     .force('center', d3.forceCenter(width / 2, height / 2));
 
-  let nodes = _.sample(graph_data.nodes, 300);
-  let node_ids = _.map(nodes, function (n) {
+
+  // start by randomly sampling exhibit nodes
+  let initial_nodes = _.sample(exhibit_nodes, 10);
+  let initial_node_ids = _.map(initial_nodes, function(n){
     return n.id;
-  })
-  let links = _.filter(graph_data.links, function (l) {
-    return _.contains(node_ids, l.source) &&
-      _.contains(node_ids, l.target);
   });
 
-  console.log(links);
-  console.log(node_ids);
+  let connected_node_ids = [];
 
+  // find all nodes connected to exhibit nodes
+  let initial_links = _.filter(graph_data.links, function(l) {
+    if (_.contains(initial_node_ids, l.source)){
+      connected_node_ids.push(l.target);
+      return true;
+    }else if (_.contains(initial_node_ids, l.target)){
+      connected_node_ids.push(l.source);
+      return true;
+    }
+    return false;
+  });
+
+  let connected_nodes = _.filter(graph_data.nodes, function(n){
+    return _.contains(connected_node_ids, n.id);
+  });
+
+  let nodes = _.union(initial_nodes, connected_nodes);
+  let links = initial_links;
+
+  console.log(connected_nodes);
+  console.log(initial_nodes);
+  console.log(links);
 
   let linkElements = svg.append('g')
     .selectAll('line')
@@ -88,5 +109,25 @@ function visualize() {
   });
 
   simulation.force('link').links(links);
+
+  let drag_drop = d3.drag()
+    .on('start', node => {
+      node.fx = node.x;
+      node.fy = node.y;
+    })
+    .on('drag', node => {
+      simulation.alphaTarget(0.7).restart();
+      node.fx = d3.event.x;
+      node.fy = d3.event.y;
+    })
+    .on('end', node => {
+      if (!d3.event.active) {
+        simulation.alphaTarget(0);
+      }
+      node.fx = null;
+      node.fy = null;
+    });
+
+    nodeElements.call(drag_drop);
 
 };
