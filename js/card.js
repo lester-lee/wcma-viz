@@ -13,7 +13,7 @@ function updateCard(node){
     updateThumbnail(node._id);
   }else if (node.node_type === "exhibit"){
     let data = exhibit_data[node._id];
-    console.log(data);
+    // console.log(data);
     $('.CardTitle').text(data.ExhTitle);
     $('.CardBy').text(data.BeginISODate + " to " + data.EndISODate)
     $('.CardMedium').text("")
@@ -28,7 +28,7 @@ function updateThumbnail(id){
 }
 
 $('.CardNeighbors').on('click', function () {
-  // Look at all neighbors of 
+  addNeighbors();
 });
 
 $('.CardClose').on('click', function (){
