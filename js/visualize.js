@@ -28,6 +28,7 @@ let radius = 10;
 
 // Keep track of visible nodes and links
 let nodes, node_ids, links, link_ids;
+let nodeGroup, linkGroup;
 let nodeElements, linkElements;
 let saved_node, saved_svg;
 let is_locked = false;
@@ -45,6 +46,9 @@ function setup_d3() {
     .call(d3.zoom()
       .scaleExtent([1 / 2, 4])
       .on('zoom', zoomed));
+
+  linkGroup = main_svg.append('g');
+  nodeGroup = main_svg.append('g');
 
   function zoomed() {
     nodeElements.attr('transform', d3.event.transform);
@@ -118,16 +122,20 @@ function init_graph() {
   // console.log(graph_data);
 }
 
-function updateGraph() {
-  linkElements = main_svg.append('g').selectAll('line').data(links);
-  let linkEnter = linkElements.enter()
+function updateGraph() { 
+  linkElements = linkGroup.selectAll('line').data(links);
+  linkElements.exit().remove();
+  let linkEnter = linkElements
+    .enter()
     .append('line')
     .attr('stroke-width', 1)
     .attr('stroke', '#bbb');
   linkElements = linkEnter.merge(linkElements);
 
-  nodeElements = main_svg.append('g').selectAll('circle').data(nodes);
-  let nodeEnter = nodeElements.enter().append('circle')
+  nodeElements = nodeGroup.selectAll('circle').data(nodes);
+  nodeElements.exit().remove();
+  let nodeEnter = nodeElements
+    .enter().append('circle')
     .attr('r', radius)
     .attr('fill', getNodeColors(0))
     .attr('stroke', getNodeColors(1))
@@ -198,8 +206,8 @@ function addNeighbors() {
   let connected_nodes = _.filter(graph_data.nodes, function (n) {
     return _.contains(connected_node_ids, n.id);
   });
-  console.log(nodes, links);
 
+  console.log(nodes, links);
   nodes = _.union(connected_nodes, nodes);
   links = _.union(new_links, links);
   console.log(nodes, links);
