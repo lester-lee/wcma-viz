@@ -20,7 +20,7 @@ let radius = 10;
 
 // Keep track of visible nodes and links
 let nodes, links;
-let saved_node;
+let saved_node, saved_svg;
 let is_locked = false;
 
 function visualize() {
@@ -153,12 +153,15 @@ function handleMouseOut(d, i) {
   d3.select(this).attr('r', radius);
   if (is_locked){
     updateCard(saved_node);
-  }else {
+    saved_svg.attr('r', radius*2);
+  } else {
     $('.Card').removeClass('--active');
   }
 }
 function handleClick(d, i) {
   is_locked = true;
+  if (saved_svg){saved_svg.attr('r', radius);}
   saved_node = d;
+  saved_svg = d3.select(this);
   updateCard(saved_node);
 }
