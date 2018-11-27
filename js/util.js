@@ -1,7 +1,6 @@
 ---
 ---
 
-
 function getNodeColors(n) {
   return (node) => {
     // Return list of dominant colors from a node

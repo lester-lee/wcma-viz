@@ -13,6 +13,9 @@ $.when(node_data, exhibit_data, exhibit_nodes, graph_data).then(function (vnode,
   visualize();
 });
 
+let simulation;
+let radius = 10;
+
 function visualize() {
   const width = window.innerWidth;
   const height = window.innerHeight;
@@ -41,9 +44,9 @@ function visualize() {
     })
     .distance(100);
 
-  let simulation = d3.forceSimulation()
+  simulation = d3.forceSimulation()
     .force('link', linkForce)
-    .force('charge', d3.forceManyBody().strength(-25))
+    .force('charge', d3.forceManyBody().strength(-15))
     .force('center', d3.forceCenter(width / 2, height / 2));
 
 
@@ -90,10 +93,13 @@ function visualize() {
     .selectAll('circle')
     .data(nodes)
     .enter().append('circle')
-    .attr('r', 10)
+    .attr('r', radius)
     .attr('fill', getNodeColors(0))
     .attr('stroke', getNodeColors(1))
-    .attr('stroke-width', 5);
+    .attr('stroke-width', radius/2)
+    .on('mouseover', handleMouseOver)
+    .on('mouseout', handleMouseOut)
+    .on('click', handleClick);
 
 
   simulation.nodes(nodes).on('tick', () => {
@@ -131,3 +137,14 @@ function visualize() {
     nodeElements.call(drag_drop);
 
 };
+
+function handleMouseOver(d, i){
+  d3.select(this).attr('r', radius*2);
+  updateCard(d);
+}
+function handleMouseOut(d, i) {
+  d3.select(this).attr('r', radius);
+}
+function handleClick(d, i) {
+  console.log("click");
+}

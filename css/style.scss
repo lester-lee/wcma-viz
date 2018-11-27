@@ -15,3 +15,16 @@ body{
 circle{
   box-shadow: 0 0 3px black;
 }
+
+.Card{
+  display: flex;
+  flex-flow: column;
+  position: fixed;
+  top: 75px;
+  left: 70px;
+  border-radius: 10px;
+  width: 350px;
+  height: 400px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
