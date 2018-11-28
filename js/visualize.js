@@ -1,10 +1,10 @@
 ---
 ---
 // Load JSON files
-let node_data = $.getJSON("../json/wcma-collection--color.json");
-let exhibit_nodes = $.getJSON("../json/exhibit_nodes.json");
-let exhibit_data = $.getJSON("../json/exhibitions--refactored.json");
-let graph_data = $.getJSON("../json/collection_graph.json");
+let node_data = $.getJSON("/json/wcma-collection--color.json");
+let exhibit_nodes = $.getJSON("/json/exhibit_nodes.json");
+let exhibit_data = $.getJSON("/json/exhibitions--refactored.json");
+let graph_data = $.getJSON("/json/collection_graph.json");
 
 $.when(node_data, exhibit_data, exhibit_nodes, graph_data).then(function (vnode, vex, vexn, vg) {
   console.log("Data loaded.");
