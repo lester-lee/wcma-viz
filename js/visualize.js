@@ -25,6 +25,7 @@ let simulation;
 let main_svg;
 let drag_drop;
 let radius = 10;
+let color_mode;
 
 // Keep track of visible nodes and links
 let nodes, node_ids, links, link_ids;
@@ -47,8 +48,8 @@ function setup_d3() {
       .scaleExtent([1 / 2, 4])
       .on('zoom', zoomed));
 
-  linkGroup = main_svg.append('g');
-  nodeGroup = main_svg.append('g');
+  linkGroup = main_svg.append('g').attr("class", "Links");
+  nodeGroup = main_svg.append('g').attr("class", "Nodes");
 
   function zoomed() {
     nodeElements.attr('transform', d3.event.transform);
@@ -67,7 +68,7 @@ function setup_d3() {
 
   drag_drop = d3.drag()
     .on('start', node => {
-      if (!d3.event.active) {
+      if (!d3.event.active && !color_mode) {
         simulation.alphaTarget(0.3).restart();
       }
       node.fx = node.x;
@@ -78,7 +79,7 @@ function setup_d3() {
       node.fy = d3.event.y;
     })
     .on('end', node => {
-      if (!d3.event.active) {
+      if (!d3.event.active && !color_mode) {
         simulation.alphaTarget(0);
       }
       node.fx = null;
@@ -199,6 +200,8 @@ function handleClick(d, i) {
 }
 
 function addNeighbors() {
+  color_mode = false;
+  $('.Links').show();
   let connected_node_ids = [];
   let new_links = _.filter(graph_data.links, function (l) {
     if (l.source === saved_node.id) {

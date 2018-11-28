@@ -13,7 +13,6 @@ body{
 }
 
 circle{
-  box-shadow: 0 0 3px black;
   &:hover{
     cursor: pointer;
   }
@@ -33,4 +32,8 @@ circle{
   &.--active{
     display: flex;
   }
+}
+
+.Sort {
+  position: fixed;
 }
