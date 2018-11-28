@@ -196,18 +196,23 @@ function addNeighbors() {
       connected_node_ids.push(l.target);
       return true;
     } else if (l.target === saved_node.id) {
-      connected_node_ids.push(l.target);
+      connected_node_ids.push(l.source);
       return true;
     }
     return false;
   });
   let connected_nodes = _.filter(graph_data.nodes, function (n) {
-    return _.contains(connected_node_ids, n.id);
+    return _.contains(connected_node_ids, n.id) &&
+      !_.contains(node_ids, n.id);
   });
+  console.log("connected nodes", connected_nodes);
+  console.log("new_links", new_links);
 
-  console.log(nodes, links);
-  nodes = _.union(connected_nodes, nodes);
-  links = _.union(new_links, links);
-  console.log(nodes, links);
-  visualize();
+  if (connected_nodes.length > 0){
+    console.log(nodes, links);
+    nodes = _.union(connected_nodes, nodes);
+    links = _.union(new_links, links);
+    console.log(nodes, links);
+    visualize();
+  }
 }
