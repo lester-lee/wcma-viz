@@ -62,24 +62,24 @@ function setup_d3() {
 
   simulation = d3.forceSimulation()
     .force('link', linkForce)
-    .force('charge', d3.forceManyBody().strength(-15))
+    .force('charge', d3.forceManyBody().strength(-15).distanceMax(270))
     .force('center', d3.forceCenter(width / 2, height / 2));
 
   drag_drop = d3.drag()
     .on('start', node => {
+      if (!d3.event.active) {
+        simulation.alphaTarget(0.3).restart();
+      }
       node.fx = node.x;
       node.fy = node.y;
     })
     .on('drag', node => {
-      simulation.force('charge', d3.forceManyBody().strength(1));
-      simulation.alphaTarget(0.95).restart();
       node.fx = d3.event.x;
       node.fy = d3.event.y;
     })
     .on('end', node => {
       if (!d3.event.active) {
-        simulation.alphaTarget(0.1);
-        simulation.force('charge', d3.forceManyBody().strength(-9));
+        simulation.alphaTarget(0);
       }
       node.fx = null;
       node.fy = null;
@@ -122,20 +122,24 @@ function init_graph() {
   // console.log(graph_data);
 }
 
-function updateGraph() { 
-  linkElements = linkGroup.selectAll('line').data(links);
+function updateGraph() {
+  linkElements = linkGroup.selectAll('line')
+    .data(links, function (l) {
+      return l.target + l.source;
+    });
   linkElements.exit().remove();
-  let linkEnter = linkElements
-    .enter()
-    .append('line')
+
+  let linkEnter = linkElements.enter().append('line')
     .attr('stroke-width', 1)
     .attr('stroke', '#bbb');
+
   linkElements = linkEnter.merge(linkElements);
 
-  nodeElements = nodeGroup.selectAll('circle').data(nodes);
+  nodeElements = nodeGroup.selectAll('circle')
+    .data(nodes, function(n) { return n.id; });
   nodeElements.exit().remove();
-  let nodeEnter = nodeElements
-    .enter().append('circle')
+
+  let nodeEnter = nodeElements.enter().append('circle')
     .attr('r', radius)
     .attr('fill', getNodeColors(0))
     .attr('stroke', getNodeColors(1))
@@ -144,7 +148,8 @@ function updateGraph() {
     .on('mouseover', handleMouseOver)
     .on('mouseout', handleMouseOut)
     .on('click', handleClick);
-  nodeElements = nodeEnter.merge(nodeElements);
+
+    nodeElements = nodeEnter.merge(nodeElements);
 }
 
 function visualize() {
@@ -162,7 +167,7 @@ function visualize() {
   });
 
   simulation.force('link').links(links);
-  simulation.restart();
+  simulation.alphaTarget(0.3).restart();
   console.log("start");
 }
 
@@ -182,6 +187,8 @@ function handleMouseOut(d, i) {
 }
 
 function handleClick(d, i) {
+  console.log(d);
+  console.log(node_data[d._id]);
   is_locked = true;
   if (saved_svg) {
     saved_svg.attr('r', radius);
