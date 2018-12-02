@@ -11,7 +11,7 @@ def query_wcma(q):
   if r.status_code == 200:
     return r.json()
   else:
-    return r.status_code
+    return None
 
 #Example query for collection
 """

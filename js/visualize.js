@@ -5,16 +5,17 @@ let node_data = $.getJSON("{{site.baseurl}}/json/wcma-collection--color.json");
 let exhibit_nodes = $.getJSON("{{site.baseurl}}/json/exhibit_nodes.json");
 let exhibit_data = $.getJSON("{{site.baseurl}}/json/exhibitions--refactored.json");
 let graph_data = $.getJSON("{{site.baseurl}}/json/collection_graph.json");
+let thumbnail_urls = $.getJSON("{{site.baseurl}}/json/thumbnail_urls.json");
 
-$.when(node_data, exhibit_data, exhibit_nodes, graph_data).then(function (vnode, vex, vexn, vg) {
+$.when(node_data, exhibit_data, exhibit_nodes, graph_data, thumbnail_urls).then(function (vnode, vex, vexn, vg, tmb) {
   console.log("Data loaded.");
   node_data = vnode[0];
   exhibit_data = vex[0];
   exhibit_nodes = vexn[0];
   graph_data = vg[0];
+  thumbnail_urls = tmb[0];
   setup_d3();
-  init_graph();
-  visualize();
+  chooseNodes();
 });
 
 
@@ -28,6 +29,7 @@ let radius = 10;
 let color_mode;
 
 // Keep track of visible nodes and links
+let initial_nodes, initial_node_ids;
 let nodes, node_ids, links, link_ids;
 let nodeGroup, linkGroup;
 let nodeElements, linkElements;
@@ -88,11 +90,8 @@ function setup_d3() {
 }
 
 function init_graph() {
-  // Randomly sample exhibit nodes
-  let initial_nodes = _.sample(exhibit_nodes, 10);
-  let initial_node_ids = _.map(initial_nodes, function (n) {
-    return n.id;
-  });
+  console.log(initial_nodes);
+  console.log(initial_node_ids);
 
   let connected_node_ids = [];
 
@@ -116,11 +115,16 @@ function init_graph() {
   node_ids = _.union(initial_node_ids, connected_node_ids);
   links = initial_links;
 
+  console.log(nodes, links);
+
   // Update graph to reduce search later
   // console.log(graph_data);
   graph_data.nodes = _.difference(graph_data.nodes, nodes);
   graph_data.links = _.difference(graph_data.links, links);
   // console.log(graph_data);
+
+  updateGraph();
+  visualize();
 }
 
 function updateGraph() {
@@ -199,15 +203,15 @@ function handleClick(d, i) {
   updateCard(saved_node);
 }
 
-function addNeighbors() {
+function addNeighbors(node) {
   color_mode = false;
   $('.Links').show();
   let connected_node_ids = [];
   let new_links = _.filter(graph_data.links, function (l) {
-    if (l.source === saved_node.id) {
+    if (l.source === node.id) {
       connected_node_ids.push(l.target);
       return true;
-    } else if (l.target === saved_node.id) {
+    } else if (l.target === node.id) {
       connected_node_ids.push(l.source);
       return true;
     }
@@ -227,4 +231,4 @@ function addNeighbors() {
     console.log(nodes, links);
     visualize();
   }
-}
+} 
