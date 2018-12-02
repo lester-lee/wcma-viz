@@ -146,8 +146,8 @@ function updateGraph() {
 
   let nodeEnter = nodeElements.enter().append('circle')
     .attr('r', radius)
-    .attr('fill', getNodeColors(0))
-    .attr('stroke', getNodeColors(1))
+    .attr('fill', getNodeColor)
+    .attr('stroke', getClassificationColor)
     .attr('stroke-width', radius / 2)
     .call(drag_drop)
     .on('mouseover', handleMouseOver)
@@ -231,4 +231,4 @@ function addNeighbors(node) {
     console.log(nodes, links);
     visualize();
   }
-} 
+}

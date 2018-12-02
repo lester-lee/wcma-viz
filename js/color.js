@@ -1,13 +1,48 @@
 ---
 ---
+let default_color = "#000000";
+let exhibit_color = "#ffaa00";
+
+function getClassificationColor(node){
+  if (node.node_type === "exhibit"){
+    return exhibit_color;
+  }else{
+    let data = node_data[node._id];
+    let clss = data.classification;
+    console.log(clss);
+  }
+}
+
+function getNodeColor(node){
+  if (node.node_type === "exhibit"){
+    return exhibit_color;
+  }else{
+  // Look for color that is furthest from beige
+    let beige = chroma("#c9c3b9");
+    let data = node_data[node._id];
+    let dominant_colors = data.dominant_colors;
+    let res_color = default_color;
+    let max_dist = 0;
+    let idx = dominant_colors.length;
+    while (idx--){
+      let cur_color = chroma(dominant_colors[idx]);
+      let cur_dist = chroma.distance(beige, cur_color, 'rgb');
+      console.log(cur_color, cur_dist);
+      if (cur_dist > max_dist){
+        max_dist = cur_dist;
+        res_color = cur_color;
+      }
+    }
+    console.log(res_color.hex());
+    return res_color.hex();
+  }
+}
 
 function getNodeColors(n) {
   return (node) => {
     // Return list of dominant colors from a node
-    let default_colors = ["#000", "#000", "#000"];
-    let exhibit_colors = ["#ffaa00", "#ffaa00", "#ffaa00"];
     if (node.node_type === "exhibit") {
-      return exhibit_colors[n];
+      return exhibit_color;
     }else if (node.node_type === "object") {
       let data = node_data[node._id];
       let colors = data.dominant_colors;
