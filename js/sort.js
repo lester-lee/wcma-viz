@@ -11,15 +11,20 @@ $('.Sort.--color').on('click', function(){
 });
 
 function getColorX(node){
-  let color = getNodeColors(0)(node);
-  let hsl = hexToHsl(color);
+  let color = getNodeColor(node);
+  let $color = chroma(color);
+  let l = $color.hsl()[2];
   let margin = width / 4;
-  return  margin + hsl.l * width * .5;
+  return  margin + l * width * .5;
 }
 
 function getColorY(node){
-  let color = getNodeColors(0)(node);
-  let hsl = hexToHsl(color);
+  let color = getNodeColor(node);
+  let $color = chroma(color);
+  let h = $color.hsl()[0];
+  if (isNaN(h)){
+    h = 0;
+  }
   let margin = height / 5;
-  return margin + (hsl.h / 360) * height * .5;
+  return margin + (h / 360) * height * .5;
 }

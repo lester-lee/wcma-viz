@@ -2,6 +2,25 @@
 ---
 let default_color = "#000000";
 let exhibit_color = "#ffaa00";
+let classifications = {
+  'PRINTS': 0,
+  'PHOTO': 1,
+  'PRENDERGAST': 2,
+  'DRAWING': 3,
+  'ANCIENT': 4,
+  'DEC ARTS': 5,
+  'RESERVE COLLECTION': 6,
+  'EASTERN': 7,
+  'PAINTING': 8,
+  'SCULPTURE': 9,
+  'AFRICAN': 10,
+  'WALLS': 11,
+  'AMERINDIAN': 12,
+  'PACIFIC': 13
+};
+
+// Generated through Categorical http://vrl.cs.brown.edu/color
+let classification_colors = ["#256676", "#6eae3d", "#711f86", "#ca81e6", "#453e7d", "#869dd3", "#0b5313", "#fc7086", "#7b4419", "#38b094", "#ac3138", "#d38f57", "#ff0087", "#96a283"];
 
 function getClassificationColor(node){
   if (node.node_type === "exhibit"){
@@ -9,7 +28,8 @@ function getClassificationColor(node){
   }else{
     let data = node_data[node._id];
     let clss = data.classification;
-    console.log(clss);
+    clss = clss.substr(5).toUpperCase();
+    return classification_colors[classifications[clss]];
   }
 }
 
@@ -21,6 +41,9 @@ function getNodeColor(node){
     let beige = chroma("#c9c3b9");
     let data = node_data[node._id];
     let dominant_colors = data.dominant_colors;
+    if (!dominant_colors){
+      return default_color;
+    }
     let res_color = default_color;
     let max_dist = 0;
     let idx = dominant_colors.length;
@@ -35,21 +58,6 @@ function getNodeColor(node){
     }
     console.log(res_color.hex());
     return res_color.hex();
-  }
-}
-
-function getNodeColors(n) {
-  return (node) => {
-    // Return list of dominant colors from a node
-    if (node.node_type === "exhibit") {
-      return exhibit_color;
-    }else if (node.node_type === "object") {
-      let data = node_data[node._id];
-      let colors = data.dominant_colors;
-      colors = colors || default_colors;
-      // console.log(data, colors);
-      return colors[n];
-    }
   }
 }
 

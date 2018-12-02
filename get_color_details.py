@@ -62,7 +62,7 @@ with open(DETAILS_FILENAME, 'w+') as color_file:
     if "filename" in artwork:
       image = cv2.imread(IMAGE_DIR + artwork["filename"])
       if image is not None:
-        dominant_colors = get_dominant_colors(3, image)
+        dominant_colors = get_dominant_colors(8, image)
         brightness = get_brightness(image)
         contrast = get_contrast(image)
         data = f"{id},{dominant_colors},{brightness},{contrast}\n"
