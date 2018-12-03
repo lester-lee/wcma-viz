@@ -27,7 +27,7 @@ function updateCard(node) {
     $('.CardDescription').text(desc);
 
     let search_link = `http://egallery.williams.edu/search/${data.title} ${data.maker}`;
-    $('.CardLink').attr('href', search_link);
+    $('.InfoLink').attr('href', search_link);
     updateThumbnail(node._id);
 
     let $colors = $('.ThumbnailColors');
