@@ -12,23 +12,36 @@ title: WCMA Visualization
 
 <body>
   <div class="SplashModal">
-    <h2>Please choose which exhibits you would like to explore.</h2>
-    <div class="ExhibitChoices">
-      <button class="ExhibitSubmit">Submit</button>
-    </div>
+    <article class="ModalContent">
+      <h2>Please select exhibits to explore:</h2>
+      <p class="ModalLoading">Loading...</p>
+      <ul class="ExhibitChoices">
+      </ul>
+    </article>
   </div>
   <article class="Card">
-    <h2 class="CardTitle --title">Sample</h2>
-    <h3 class="CardBy --subtext">Artist</h3>
-    <button class="CardClose">Close</button>
-    <hr>
-    <p class="CardMedium --subtext">oil</p>
-    <p class="CardDimensions --subtext">big</p>
-    <p class="CardDescription  --text">this is a work of art!</p>
+    <h2 class="CardTitle">Sample</h2>
+    <h3 class="CardBy">Artist, <span class="CardDate"></span></h3>
+    <div class="CardSection">
+      <label>Medium</label>
+      <p class="CardMedium">oil</p>
+    </div>
+    <div class="CardSection">
+      <label>Dimensions</label>
+      <p class="CardDimensions"></p>
+    </div>
+    <div class="CardSection">
+      <label>Description</label>
+      <p class="CardDescription"></p>
+    </div>
+    <div class="CardSection">
     <img class="CardThumbnail" alt="Thumbnail of described image" src="">
-    <a class="CardLink" href=""><button>Learn More</button></a>
+    </div>
+    <div class="CardSection">
+    <a class="CardLink" href=""><button>Search WCMA for</button></a>
     <button class="CardNeighbors">Add Neighbors</button>
     <button class="CardExpand">Load random node</button>
+    </div>
   </article>
   <button class="Sort --color">Sort by Color</button>
   <svg class="Collection"></svg>

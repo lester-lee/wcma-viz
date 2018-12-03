@@ -1,5 +1,9 @@
 ---
 ---
+$wcma-color: #ef2bb8;
+$wcma-color--hover: #ff8cde;
+$wcma-color--active: #9b317d;
+
 html{
   box-sizing: border-box;
 }
@@ -18,20 +22,96 @@ circle{
   }
 }
 
+ul { 
+  padding: 0;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+@for $i from 1 through 6{
+  h#{$i} { margin: 0; }
+}
+
+/* Splash Modal */
+.SplashModal {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // z-index: 99;
+}
+
+.ModalContent {
+  background: #fff;
+  border: 10px solid $wcma-color;
+  width: 30vw;;
+  color: #333;
+}
+
+.ExhibitChoices {
+  display: flex;
+  flex-flow: column;
+}
+
 .Card{
-  display: none;
   flex-flow: column;
   position: fixed;
-  top: 75px;
-  left: 70px;
-  border-radius: 10px;
-  width: 350px;
-  height: 400px;
-  border: 1px solid #ddd;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 450px;
   background: #fff;
-  &.--active{
-    display: flex;
+  border-right: 1px solid $wcma-color;
+  padding: 100px 10px;
+  p {
+    margin: 0;
   }
+  label {
+    font-style: italic;
+    color: $wcma-color;
+  }
+  img {
+    max-width: 100%;
+    max-height: 40vh;
+    margin: 10px auto;
+    display: block;
+  }
+  button {
+    border: 0;
+    padding: 10px;
+    margin: 5px;
+    background: $wcma-color;
+    color: #fff;
+    width: 100%;
+    &:hover {
+      cursor: pointer;
+      background: $wcma-color--hover;
+    }
+    &:active {
+      background: $wcma-color--active;
+      outline: 0;
+    }
+  }
+  &Title {
+    background: $wcma-color;
+    width: 100%;
+    color: #fff;
+    padding: 10px;
+  }
+  &By {
+    color: $wcma-color;
+    margin-bottom: 1em;
+  }
+  &Section {
+    width: 100%;
+  }
+  
 }
 
 .Sort {

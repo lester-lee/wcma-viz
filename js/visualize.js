@@ -1,5 +1,6 @@
 ---
 ---
+
 // Load JSON files
 let node_data = $.getJSON("{{site.baseurl}}/json/wcma-collection--color.json");
 let exhibit_nodes = $.getJSON("{{site.baseurl}}/json/exhibit_nodes.json");
@@ -141,7 +142,7 @@ function updateGraph() {
   linkElements = linkEnter.merge(linkElements);
 
   nodeElements = nodeGroup.selectAll('circle')
-    .data(nodes, function(n) { return n.id; });
+    .data(nodes, function (n) { return n.id; });
   nodeElements.exit().remove();
 
   let nodeEnter = nodeElements.enter().append('circle')
@@ -154,7 +155,7 @@ function updateGraph() {
     .on('mouseout', handleMouseOut)
     .on('click', handleClick);
 
-    nodeElements = nodeEnter.merge(nodeElements);
+  nodeElements = nodeEnter.merge(nodeElements);
 }
 
 function visualize() {
@@ -194,13 +195,19 @@ function handleMouseOut(d, i) {
 function handleClick(d, i) {
   console.log(d);
   console.log(node_data[d._id]);
-  is_locked = true;
-  if (saved_svg) {
-    saved_svg.attr('r', radius);
+  if (saved_node === d) {
+    saved_node = null;
+    saved_svg = null;
+    is_locked = false;
+  } else {
+    is_locked = true;
+    if (saved_svg) {
+      saved_svg.attr('r', radius);
+    }
+    saved_node = d;
+    saved_svg = d3.select(this);
+    updateCard(saved_node);
   }
-  saved_node = d;
-  saved_svg = d3.select(this);
-  updateCard(saved_node);
 }
 
 function addNeighbors(node) {
@@ -224,7 +231,7 @@ function addNeighbors(node) {
   console.log("connected nodes", connected_nodes);
   console.log("new_links", new_links);
 
-  if (connected_nodes.length > 0){
+  if (connected_nodes.length > 0) {
     console.log(nodes, links);
     nodes = _.union(connected_nodes, nodes);
     links = _.union(new_links, links);
