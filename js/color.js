@@ -49,7 +49,7 @@ function getNodeColor(node){
     let idx = dominant_colors.length;
     while (idx--){
       let cur_color = chroma(dominant_colors[idx]);
-      let cur_dist = chroma.distance(beige, cur_color, 'rgb');
+      let cur_dist = chroma.distance(beige, cur_color, 'hsv');
       console.log(cur_color, cur_dist);
       if (cur_dist > max_dist){
         max_dist = cur_dist;
