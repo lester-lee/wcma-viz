@@ -147,8 +147,8 @@ function updateGraph() {
 
   let nodeEnter = nodeElements.enter().append('circle')
     .attr('r', radius)
-    .attr('fill', getNodeColor)
-    .attr('stroke', getClassificationColor)
+    .attr('fill', getNodeColor(0))
+    .attr('stroke', getNodeColor(1))
     .attr('stroke-width', radius / 2)
     .call(drag_drop)
     .on('mouseover', handleMouseOver)

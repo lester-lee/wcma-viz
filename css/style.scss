@@ -68,7 +68,7 @@ a {
   width: 450px;
   background: #fff;
   border-right: 1px solid $wcma-color;
-  padding: 100px 10px;
+  padding: 50px 10px;
   p {
     margin: 0;
   }
@@ -111,7 +111,18 @@ a {
   &Section {
     width: 100%;
   }
-  
+  &Colors {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    width: 33%;
+    margin: 0 auto 5px;
+    .ColorSample{
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+    }
+  }
 }
 
 .Sort {

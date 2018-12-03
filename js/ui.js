@@ -4,10 +4,14 @@
 function updateCard(node) {
   if (node.node_type === "object") {
     let data = node_data[node._id];
+
     $('.CardTitle').text(data.title);
+
     let byline = `${data.maker}, ${data.creation_date}`;
     $('.CardBy').text(byline);
+
     $('.CardMedium').text(data.medium);
+
     let dim_text;
     if (data.depth_in !== "0"){
       dim_text = `${data.height_in} x ${data.width_in} in. x ${data.depth_in} (${data.height_cm} x ${data.width_cm} x ${data.depth_cm} cm)`;
@@ -15,14 +19,27 @@ function updateCard(node) {
       dim_text = `${data.height_in} x ${data.width_in} in. (${data.height_cm} x ${data.width_cm} cm)`;
     }
     $('.CardDimensions').text(dim_text);
+
     let desc = data.description;
     if (desc === "NULL"){
       desc = "Description not available."
     }
     $('.CardDescription').text(desc);
+
     let search_link = `http://egallery.williams.edu/search/${data.title} ${data.maker}`;
     $('.CardLink').attr('href', search_link);
     updateThumbnail(node._id);
+
+    let $colors = $('.CardColors');
+    $colors.html('');
+    let colors = data.dominant_colors || [];
+    let idx = colors.length;
+    while (idx--){
+      $colors.append($(
+        `<div class="ColorSample" style="background:${colors[idx]}"></div>`
+      ));
+    }
+
   } else if (node.node_type === "exhibit") {
     let data = exhibit_data[node._id];
     // console.log(data);
@@ -32,7 +49,6 @@ function updateCard(node) {
     $('.CardDimensions').text("");
     $('.CardDescription').text(data.CurNotes);
   }
-  $('.Card').addClass('--active');
 }
 
 function updateThumbnail(id) {
@@ -70,7 +86,6 @@ function chooseNodes() {
       <input type="checkbox" name="${node.id}" id="${node.id}" />
       <label for="${node.id}">${exhibit_data[node._id].ExhTitle}</label>
       </li>`;
-    console.log(exh);
     $('.ExhibitChoices').append($(exh));
   }
   $('.ModalLoading').hide();
