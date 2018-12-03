@@ -19,33 +19,34 @@ title: WCMA Visualization
       </ul>
     </article>
   </div>
-  <article class="Card">
-    <h2 class="CardTitle">Sample</h2>
-    <h3 class="CardBy">Artist, <span class="CardDate"></span></h3>
-    <div class="CardSection">
-      <label>Medium</label>
-      <p class="CardMedium">oil</p>
+  <section class="Info">
+    <div class="Thumbnail">
+      <img class="ThumbnailImage" alt="Thumbnail of described image" src="">
+      <ul class="ThumbnailColors">
+      </ul>
     </div>
-    <div class="CardSection">
-      <label>Dimensions</label>
-      <p class="CardDimensions"></p>
+    <div class="Card">
+      <h2 class="CardTitle">Sample</h2>
+      <h3 class="CardBy">Artist, <span class="CardDate"></span></h3>
+      <div class="CardSection">
+        <label>Medium</label>
+        <p class="CardMedium">oil</p>
+      </div>
+      <div class="CardSection">
+        <label>Dimensions</label>
+        <p class="CardDimensions"></p>
+      </div>
+      <div class="CardSection">
+        <label>Description</label>
+        <p class="CardDescription"></p>
+      </div>
     </div>
-    <div class="CardSection">
-      <label>Description</label>
-      <p class="CardDescription"></p>
-    </div>
-    <div class="CardSection">
-    <img class="CardThumbnail" alt="Thumbnail of described image" src="">
-    <ul class="CardColors">
-    </ul>
-    </div>
-    <div class="CardSection">
-    <a class="CardLink" href=""><button>Search WCMA</button></a>
-    <button class="CardNeighbors">Add Neighbors</button>
-    <button class="CardExpand">Load random node</button>
-    </div>
-  </article>
-  <button class="Sort --color">Sort by Color</button>
+<div class="InfoButtons">
+  <a class="InfoLink" href=""><button>Search WCMA</button></a>
+  <button class="CardNeighbors">Add Neighbors</button>
+  <button class="CardExpand">Load random node</button>
+</div>
+  </section> 
   <svg class="Collection"></svg>
   <script src="{{site.baseurl}}/lib/jquery-3.3.1.min.js"></script>
   <script src="{{site.baseurl}}/lib/underscore-min.js"></script>

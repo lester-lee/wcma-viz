@@ -14,6 +14,7 @@ html{
 body{
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 circle{
@@ -44,7 +45,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  // z-index: 99;
+  z-index: 99;
 }
 
 .ModalContent {
@@ -59,28 +60,21 @@ a {
   flex-flow: column;
 }
 
-.Card{
-  flex-flow: column;
+/* Information */
+
+.Info{
+  display: grid;
+  grid-template:
+    "thumb card" 55vh
+    "button button" 1fr
+    / 1fr 1fr;
   position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 450px;
-  background: #fff;
-  border-right: 1px solid $wcma-color;
-  padding: 50px 10px;
-  p {
-    margin: 0;
-  }
-  label {
-    font-style: italic;
-    color: $wcma-color;
-  }
-  img {
-    max-width: 100%;
-    max-height: 40vh;
-    margin: 10px auto;
-    display: block;
+  top: 10vh;
+  left: 5vw;
+  width: 30vw;
+  height: 55vh;
+  &Buttons{
+    grid-area: button;
   }
   button {
     border: 0;
@@ -89,14 +83,30 @@ a {
     background: $wcma-color;
     color: #fff;
     width: 100%;
+
     &:hover {
       cursor: pointer;
       background: $wcma-color--hover;
     }
+
     &:active {
       background: $wcma-color--active;
       outline: 0;
     }
+  }
+}
+
+.Card{
+  background: #fff;
+  border: 1px solid $wcma-color;
+  padding: 10px;
+  overflow-y: scroll;
+  p {
+    margin: 0;
+  }
+  label {
+    font-style: italic;
+    color: $wcma-color;
   }
   &Title {
     background: $wcma-color;
@@ -111,20 +121,38 @@ a {
   &Section {
     width: 100%;
   }
+}
+
+.Thumbnail {
+  padding: 10px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  &Image {
+    max-width: 100%;
+    max-height: 80%;
+    margin: 10px auto;
+    display: block;
+  }
   &Colors {
     display: flex;
     flex-flow: row;
     justify-content: space-between;
-    width: 33%;
+    width: 70%;
     margin: 0 auto 5px;
-    .ColorSample{
-      width: 15px;
-      height: 15px;
+
+    .ColorSample {
+      width: 1vw;
+      height: 1vw;
       border-radius: 50%;
     }
   }
 }
 
-.Sort {
-  position: fixed;
+/* Visualization */
+
+.Collection{
+  position: relative;
+  left: 40vw;
 }

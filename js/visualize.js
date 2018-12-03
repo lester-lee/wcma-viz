@@ -21,7 +21,7 @@ $.when(node_data, exhibit_data, exhibit_nodes, graph_data, thumbnail_urls).then(
 
 
 // Visualization D3 variables
-const width = window.innerWidth;
+const width = window.innerWidth / 2;
 const height = window.innerHeight;
 let simulation;
 let main_svg;

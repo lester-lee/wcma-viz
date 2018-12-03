@@ -30,7 +30,7 @@ function updateCard(node) {
     $('.CardLink').attr('href', search_link);
     updateThumbnail(node._id);
 
-    let $colors = $('.CardColors');
+    let $colors = $('.ThumbnailColors');
     $colors.html('');
     let colors = data.dominant_colors || [];
     let idx = colors.length;
@@ -53,9 +53,11 @@ function updateCard(node) {
 
 function updateThumbnail(id) {
   if (thumbnail_urls[id] !== "None") {
-    $('.CardThumbnail').attr('src', thumbnail_urls[id]);
+    $('.ThumbnailImage').attr('src', thumbnail_urls[id]);
+    $('.ThumbnailImage').attr('alt', `Thumbnail of ${node_data[id].title}`);
   } else {
-    $('.CardThumbnail').attr('src', "");
+    $('.ThumbnailImage').attr('src', '');
+    $('.ThumbnailImage').attr('alt', 'Thumbnail not available.');
   }
 }
 
