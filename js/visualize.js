@@ -62,7 +62,7 @@ function setup_d3() {
     .id(function (link) {
       return link.id;
     })
-    .distance(100);
+    .distance(150);
 
   simulation = d3.forceSimulation()
     .force('link', linkForce)
