@@ -1,7 +1,7 @@
 ---
 ---
 let default_color = "#000000";
-let exhibit_color = "#ffaa00";
+let exhibit_color = "#ef2bb8";
 let classifications = {
   'PRINTS': 0,
   'PHOTO': 1,
