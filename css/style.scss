@@ -18,6 +18,34 @@ circle{
   }
 }
 
+ul { 
+  padding: 0;
+  list-style-type: none;
+}
+
+/* Splash Modal */
+.SplashModal {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ModalContent {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 50vw;
+  height: 50vh;
+}
+
+.ExhibitChoices {
+  display: flex;
+  flex-flow: column;
+}
+
 .Card{
   display: none;
   flex-flow: column;

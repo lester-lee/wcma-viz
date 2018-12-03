@@ -54,21 +54,22 @@ function chooseNodes() {
   let idx = initial_nodes.length;
   while (idx--) {
     node = initial_nodes[idx];
-    $('.ExhibitChoices').append($("<input>",
-      {
-        type: 'checkbox',
-        name: node.id,
-        id: node.id
-      }));
-    $('.ExhibitChoices').append($("<label>",
-      {
-        for: node.id,
-        text: exhibit_data[node._id].ExhTitle
-      }));
+    exh = `<li class="ExhibitChoice">
+      <input type="checkbox" name="${node.id}" id="${node.id}" />
+      <label for="${node.id}">${exhibit_data[node._id].ExhTitle}</label>
+      </li>`;
+    console.log(exh);
+    $('.ExhibitChoices').append($(exh));
   }
+  $('.ModalLoading').hide();
+  $('.ModalContent').append($('<button>',
+  {
+    class: 'ExhibitSubmit',
+    text: 'Submit'
+  }));
 }
 
-$('.ExhibitSubmit').on('click', function(){
+$('.SplashModal').on('click', '.ExhibitSubmit', function(){
   // Retrieve selected nodes
   let selected = [];
   $('.ExhibitChoices input:checked').each(function(){
