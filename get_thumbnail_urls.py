@@ -14,20 +14,19 @@ for id in collection:
   print(f"{id}, ", end="", flush=True)
 
   res = gql.query_wcma(query)
-  if res:
+  try:
     remote = res["data"]["object"]["remote"]
-    if remote:
-      version = remote["version"]
-      p_id = remote["public_id"]
-      fmt = remote["format"]
+    version = remote["version"]
+    p_id = remote["public_id"]
+    fmt = remote["format"]
 
-      url = f'http://res.cloudinary.com/wcma/image/upload/v{version}/{p_id}.{fmt}'
-      #print(url)
-      urls[id] = url
-    else:
-      urls[id] = "None"
+    if not version or not p_id or not fmt:
+      raise LookupError("Invalid thumbnail url")
 
-  else:
+    url = f'http://res.cloudinary.com/wcma/image/upload/v{version}/{p_id}.{fmt}'
+    print(url)
+    urls[id] = url
+  except Exception as e:
     urls[id] = "None"
 
 
