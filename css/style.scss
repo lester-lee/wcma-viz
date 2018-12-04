@@ -1,29 +1,35 @@
 ---
 ---
-$wcma-color: #ef2bb8;
-$wcma-color--hover: #ff8cde;
-$wcma-color--active: #9b317d;
 
-html{
+$base-c: #BD6081;
+$highlight-c: #EF9291;
+$shadow-c: #604658;
+$accent-c: #F5C698;
+$accent2-c: #de7372;
+
+html {
   box-sizing: border-box;
 }
-*{
+
+* {
   box-sizing: inherit;
 }
 
-body{
+body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  font-family: 'Droid Serif', sans-serif;
+  font-size: 16px;
 }
 
-circle{
-  &:hover{
+circle {
+  &:hover {
     cursor: pointer;
   }
 }
 
-ul { 
+ul {
   padding: 0;
   list-style-type: none;
 }
@@ -32,8 +38,40 @@ a {
   text-decoration: none;
 }
 
-@for $i from 1 through 6{
-  h#{$i} { margin: 0; }
+@for $i from 1 through 6 {
+  h#{$i} {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+  }
+}
+
+button {
+  display: block;
+  border: 0;
+  padding: 10px;
+  margin: 5px auto;
+  background: $highlight-c;
+  border-bottom: .5em solid $accent2-c;
+  color: #fff;
+  width: 20em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+  &:hover {
+    cursor: pointer;
+    background: $accent-c;
+    border-bottom-color: $highlight-c;
+  }
+  &:active, &:focus {
+    outline: 0;
+  }
+  &:active {
+    background: $accent2-c;
+    border-color: $accent2-c;
+  }
 }
 
 /* Splash Modal */
@@ -49,10 +87,13 @@ a {
 }
 
 .ModalContent {
-  background: #fff;
-  border: 10px solid $wcma-color;
-  width: 30vw;;
-  color: #333;
+  background: $base-c;
+  border-left: 2vw solid $shadow-c;
+  border-right: 2vw solid $shadow-c;
+  width: 50em;
+  height: 30em;
+  padding: 1em 10em;
+  color: #fff;
 }
 
 .ExhibitChoices {
@@ -62,62 +103,49 @@ a {
 
 /* Information */
 
-.Info{
+.Info {
   display: grid;
   grid-template:
-    "thumb card" 55vh
-    "button button" 1fr
-    / 1fr 1fr;
+    "thumb card"55vh "button button"1fr / 1fr 1fr;
   position: fixed;
   top: 10vh;
   left: 5vw;
   width: 30vw;
   height: 55vh;
-  &Buttons{
+
+  &Buttons {
     grid-area: button;
   }
-  button {
-    border: 0;
-    padding: 10px;
-    margin: 5px 0;
-    background: $wcma-color;
-    color: #fff;
-    width: 100%;
 
-    &:hover {
-      cursor: pointer;
-      background: $wcma-color--hover;
-    }
-
-    &:active {
-      background: $wcma-color--active;
-      outline: 0;
-    }
-  }
 }
 
-.Card{
+.Card {
   background: #fff;
-  border: 1px solid $wcma-color;
+  border: 1px solid $base-c;
   padding: 10px;
   overflow-y: scroll;
+
   p {
     margin: 0;
   }
+
   label {
     font-style: italic;
-    color: $wcma-color;
+    color: $base-c;
   }
+
   &Title {
-    background: $wcma-color;
+    background: $base-c;
     width: 100%;
     color: #fff;
     padding: 10px;
   }
+
   &By {
-    color: $wcma-color;
+    color: $base-c;
     margin-bottom: 1em;
   }
+
   &Section {
     width: 100%;
   }
@@ -129,12 +157,14 @@ a {
   flex-flow: column;
   justify-content: center;
   align-items: center;
+
   &Image {
     max-width: 100%;
     max-height: 80%;
     margin: 10px auto;
     display: block;
   }
+
   &Colors {
     display: flex;
     flex-flow: row;
@@ -152,7 +182,7 @@ a {
 
 /* Visualization */
 
-.Collection{
+.Collection {
   position: relative;
   left: 40vw;
 }

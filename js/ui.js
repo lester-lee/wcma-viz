@@ -90,7 +90,7 @@ function chooseNodes() {
       </li>`;
     $('.ExhibitChoices').append($(exh));
   }
-  $('.ModalLoading').hide();
+  $('.ModalText').hide();
   $('.ModalContent').append($('<button>',
   {
     class: 'ExhibitSubmit',
