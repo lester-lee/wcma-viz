@@ -80,22 +80,28 @@ function chooseNodes() {
   // Randomly sample exhibit nodes
   initial_nodes = _.sample(exhibit_nodes, 5);
 
-  // Show initial nodes to the user
+  // Fill list with exhibit info
   let idx = initial_nodes.length;
   while (idx--) {
     node = initial_nodes[idx];
     exh = `<li class="ExhibitChoice">
       <input type="checkbox" name="${node.id}" id="${node.id}" />
-      <label for="${node.id}">${exhibit_data[node._id].ExhTitle}</label>
+      <span class="ModalCheckbox"></span>
+      <span>${exhibit_data[node._id].ExhTitle}</span>
       </li>`;
     $('.ExhibitChoices').append($(exh));
   }
-  $('.ModalText').hide();
-  $('.ModalContent').append($('<button>',
-  {
-    class: 'ExhibitSubmit',
-    text: 'Submit'
-  }));
+
+  $('.ModalStart').text("Start");
+  $('.ModalStart').on('click', function () {
+    // Show nodes to the user
+    $('.ModalText').hide();
+    $('.ExhibitChoices').addClass('--active');
+    $('.ModalContent').append($('<button>', {
+      class: 'ExhibitSubmit',
+      text: 'Submit'
+    }));
+  })
 }
 
 $('.SplashModal').on('click', '.ExhibitSubmit', function(){
@@ -118,4 +124,9 @@ $('.SplashModal').on('click', '.ExhibitSubmit', function(){
   }else{
     alert("Please choose at least one exhibit.");
   }
+});
+
+$('.SplashModal').on('click', '.ExhibitChoice', function() {
+  $input = $(this).children('input')[0];
+  $input.checked = !$input.checked;
 });
