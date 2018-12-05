@@ -55,7 +55,8 @@ function updateCard(node) {
     $('.--medium').hide();
     $('.--dimensions').hide();
     $('.Thumbnail').hide();
-    $('.CardDescription').text(data.CurNotes);
+    let desc = `This is an exhibit. ${data.curNotes}`;
+    $('.CardDescription').text(desc);
   }
   $('.Info').addClass('--active');
 }
