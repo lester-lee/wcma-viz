@@ -91,7 +91,7 @@ button {
   align-items: center;
   justify-content: center;
   z-index: 99;
-  overflow-y: scroll;
+  overflow-y: auto;
   &.--active {
     display: flex;
   }
@@ -195,16 +195,13 @@ input[type=checkbox] {
 .Info {
   display: none;
   flex-flow: column;
-  justify-content: center;
+  justify-content: space-between;
   position: fixed;
   padding: 10vh 5vh;
   width: 40em;
   height: 100vh;
   &.--active {
     display: flex;
-  }
-  &Buttons {
-    grid-area: button;
   }
 
 }
@@ -213,7 +210,7 @@ input[type=checkbox] {
   background: #fff;
   border: 1px solid $base-c;
   padding: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
   min-height: 20%;
 
   p {
@@ -229,8 +226,7 @@ input[type=checkbox] {
     background: $base-c;
     width: 100%;
     color: #fff;
-    padding: 10px;
-    grid-area: title;
+    padding: 1em;
   }
 
   &By {
