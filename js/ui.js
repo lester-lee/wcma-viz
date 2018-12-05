@@ -2,6 +2,7 @@
 ---
 
 function updateCard(node) {
+  // Pulls relevant data and updates Info section
   if (node.node_type === "object") {
     let data = node_data[node._id];
 
@@ -63,6 +64,7 @@ function updateCard(node) {
 }
 
 function updateThumbnail(id) {
+  // Retrieve corresponding thumbnail url from JSON file
   if (thumbnail_urls[id] !== "None") {
     $('.ThumbnailImage').attr('src', thumbnail_urls[id]);
     $('.ThumbnailImage').attr('alt', `Thumbnail of ${node_data[id].title}`);
@@ -142,17 +144,20 @@ $('.Modal').on('click', '.ExhibitSubmit', function(){
 });
 
 $('.Modal').on('click', '.ExhibitChoice', function() {
+  // Checkbox functionality for splash
   let $input = $(this).children('input')[0];
   $input.checked = !$input.checked;
 });
 
 $('.ModalClose').on('click', function(){
+  // Close button
   $('.Modal').removeClass('--active');
 });
 
 /* Modal Links */
 
 $('.ModalLink').on('click', function(){
+  // Open corresponding modal
   let $a = $(this).find('a');
   if ($a.attr('href') === '#about'){
     $('.Modal.--about').addClass('--active');
