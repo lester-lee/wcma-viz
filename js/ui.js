@@ -66,9 +66,11 @@ function updateCard(node) {
 function updateThumbnail(id) {
   // Retrieve corresponding thumbnail url from JSON file
   if (thumbnail_urls[id] !== "None") {
+    $('.ThumbnailColors').show();
     $('.ThumbnailImage').attr('src', thumbnail_urls[id]);
     $('.ThumbnailImage').attr('alt', `Thumbnail of ${node_data[id].title}`);
   } else {
+    $('.ThumbnailColors').hide();
     $('.ThumbnailImage').attr('src', '');
     $('.ThumbnailImage').attr('alt', 'Thumbnail not available.');
   }
