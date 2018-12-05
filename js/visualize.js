@@ -38,6 +38,7 @@ let saved_node, saved_svg;
 let is_locked = false;
 
 function setup_d3() {
+  // Initialize main_svg and define zoom/drag functions
   main_svg = d3.select('.Collection')
     .attr('width', width)
     .attr('height', height);
@@ -96,7 +97,7 @@ function init_graph() {
 
   let connected_node_ids = [];
 
-  // find all nodes connected to exhibit nodes
+  // Find all nodes connected to exhibit nodes
   let initial_links = _.filter(graph_data.links, function (l) {
     if (_.contains(initial_node_ids, l.source)) {
       connected_node_ids.push(l.target);
@@ -129,6 +130,7 @@ function init_graph() {
 }
 
 function updateGraph() {
+  // Reread data and update svg elements accordingly
   linkElements = linkGroup.selectAll('line')
     .data(links, function (l) {
       return l.target + l.source;
@@ -159,6 +161,7 @@ function updateGraph() {
 }
 
 function visualize() {
+  // Define tick function for simulation & run
   updateGraph();
   simulation.nodes(nodes).on('tick', () => {
     nodeElements
@@ -178,11 +181,13 @@ function visualize() {
 }
 
 function handleMouseOver(d, i) {
+  // Highlight hovered node
   d3.select(this).attr('r', radius * 2);
   updateCard(d);
 }
 
 function handleMouseOut(d, i) {
+  // Reset node
   d3.select(this).attr('r', radius);
   if (is_locked) {
     updateCard(saved_node);
@@ -193,6 +198,7 @@ function handleMouseOut(d, i) {
 }
 
 function handleClick(d, i) {
+  // Save/unsave the selected node
   // console.log(d);
   // console.log(node_data[d._id]);
   if (saved_node === d) {
@@ -211,6 +217,8 @@ function handleClick(d, i) {
 }
 
 function addNeighbors(node) {
+  // Look at selected node and find all neighbors,
+  // then add neighbors to the graph
   color_mode = false;
   $('.Links').show();
   let connected_node_ids = [];
@@ -237,5 +245,7 @@ function addNeighbors(node) {
     links = _.union(new_links, links);
     // console.log(nodes, links);
     visualize();
+  }else {
+    alert("The selected node has no neighbors!");
   }
 }
