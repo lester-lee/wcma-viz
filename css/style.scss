@@ -39,9 +39,9 @@ ul {
 
 a {
   text-decoration: none;
-  color: $base-c;
+  color: $accent-c;
   &:hover {
-    color: $accent-c;
+    color: $highlight-c;
   }
 }
 
@@ -95,6 +95,13 @@ button {
   &.--active {
     display: flex;
   }
+  &Text{
+    padding-top: 1em;
+  }
+  &Close{
+  cursor: pointer;
+  float: right;
+  }
 }
 
 .ModalContent {
@@ -114,11 +121,6 @@ button {
   }
 }
 
-.ModalClose {
-  cursor: pointer;
-  float: right;
-}
-
 /* Modal Links */
 .ModalLinks{
   position: fixed;
@@ -135,6 +137,12 @@ button {
   font-family: $title-f;
   text-transform: uppercase;
   font-size: 20px;
+  a {
+    color: $base-c;
+    &:hover {
+      color: $accent-c;
+    }
+  }
 }
 
 .ExhibitChoices {

@@ -33,11 +33,36 @@ title: WCMA Visualization
         <span class="ModalClose">❌</span>
       </h2>
       <div class="ModalText">
-        <p>Each node (circle) represents either an artwork or an exhibit. The exhibit nodes are pink, while the artwork nodes will have a color that corresponds to its thumbnail!<br>
-        A connection between two nodes means that an artwork was shown in the connected exhibition.</p>
-        <p><b>Interactions</b><br><b>Hover</b> over a node to view details.<br><b>Click</b> on a node to select it.<br><b>Scroll</b> to zoom in or out.<br><b>Drag</b> a node to move it around.<br><b>Search WCMA</b> will search the WCMA collection for the currently selected node.<br><b>Add Neighbors</b> will look for all nodes that are connected to the currently selected node and add them to the graph.<br><b>Load Random Node</b> will randomly select a node and add it to the graph.</p>
-        <p><b>Misc.</b><br>
-          The data is incomplete, so not every node will have neighbors. Some exhibits might be empty because artwork data is missing. Not every artwork has a thumbnail. Apologies! </p>
+          <h3 id="the-network">The Network</h3>
+          <p>Each node (circle) represents either an artwork or an exhibit. The exhibit nodes are pink, while the artwork nodes will have a color that corresponds to its thumbnail.</p>
+          <p>A connection between two nodes means that an artwork was shown in the connected exhibition.</p>
+          <h3 id="interactions">Interactions</h3>
+          <ul>
+          <li><strong>Hover</strong> over a node to view its details.</li>
+          <li><strong>Click</strong> on a node to select it.</li>
+          <li><strong>Scroll</strong> to zoom in or out.</li>
+          <li><strong>Drag</strong> a node to move it around.</li>
+          <li><strong>Search WCMA</strong> will search the WCMA collection for the currently selected node.</li>
+          <li><strong>Add Neighbors</strong> will look for all nodes that are connected to the currently selected node, and add them to the graph.</li>
+          <li><strong>Load Random Node</strong> will randomly select a node and add it to the graph.</li>
+          </ul>
+          <h3 id="misc">Misc</h3>
+          <p>The data is incomplete, so not every node will have neighbors. Some exhibits might be empty because artwork data is missing. Not every artwork has a thumbnail. Apologies!</p>
+          
+      </div>
+    </article>
+  </div>
+  <div class="Modal --about">
+    <article class="ModalContent">
+      <h2 class="ModalTitle">About
+          <span class="ModalClose">❌</span>        
+      </h2>
+      <div class="ModalText">
+          <p>I am <a href="https://www.lester-le.com">Lester Lee</a>, a Computer Science major at Williams College.</p>
+          <p>In Fall&#39;18, I did an independent study on information visualization with <a href="http://www.cs.williams.edu/~iris/">Professor Iris Howley</a>. More information about my independent study can be found on <a href="https://www.lester-lee.com/f2018-info-vis/">my blog</a>. This blog also contains my process for working on this project!</p>
+          <p>Much thanks to the <a href="https://github.com/wcmaart/collection">Williams College Museum of Art (WCMA)</a> for providing me with data and helping me out with this project!</p>
+          <p><strong>Explore WCMA</strong> is a way to find pieces in the collection that you haven&#39;t seen before by following an artwork&#39;s connections through exhibits. You can also get a quick sense of the color scheme of each exhibit! </p>
+          
       </div>
     </article>
   </div>
