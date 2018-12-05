@@ -101,7 +101,8 @@ button {
   button {
     position: absolute;
     bottom: 3em;
-    left: 13.7em;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
