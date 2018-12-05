@@ -82,15 +82,19 @@ button {
 }
 
 /* Splash Modal */
-.SplashModal {
+.Modal {
   width: 100vw;
   height: 100vh;
   position: fixed;
   background: #fff;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   z-index: 99;
+  overflow-y: scroll;
+  &.--active {
+    display: flex;
+  }
 }
 
 .ModalContent {
@@ -110,8 +114,9 @@ button {
   }
 }
 
-.SplashModal.--help{
-  display: none;
+.ModalClose {
+  cursor: pointer;
+  float: right;
 }
 
 /* Modal Links */
@@ -122,7 +127,7 @@ button {
   display: flex;
   flex-flow: row;
   color: $base-c;
-  z-index: 98;
+  z-index: 99;
 }
 
 .ModalLink{

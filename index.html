@@ -12,7 +12,7 @@ title: WCMA Visualization
 </head>
 
 <body>
-  <div class="SplashModal">
+  <div class="Modal --start --active">
     <article class="ModalContent">
       <h2 class="ModalTitle">Explore WCMA</h2>
       <div class="ModalText">
@@ -27,11 +27,17 @@ title: WCMA Visualization
       </ul>
     </article>
   </div>
-  <div class="SplashModal --help">
+  <div class="Modal --help">
     <article class="ModalContent">
-      <h2 class="ModalTitle">Help</h2>
+      <h2 class="ModalTitle">Help
+        <span class="ModalClose">❌</span>
+      </h2>
       <div class="ModalText">
-        
+        <p>Each node (circle) represents either an artwork or an exhibit. The exhibit nodes are pink, while the artwork nodes will have a color that corresponds to its thumbnail!<br>
+        A connection between two nodes means that an artwork was shown in the connected exhibition.</p>
+        <p><b>Interactions</b><br><b>Hover</b> over a node to view details.<br><b>Click</b> on a node to select it.<br><b>Scroll</b> to zoom in or out.<br><b>Drag</b> a node to move it around.<br><b>Search WCMA</b> will search the WCMA collection for the currently selected node.<br><b>Add Neighbors</b> will look for all nodes that are connected to the currently selected node and add them to the graph.<br><b>Load Random Node</b> will randomly select a node and add it to the graph.</p>
+        <p><b>Misc.</b><br>
+          The data is incomplete, so not every node will have neighbors. Some exhibits might be empty because artwork data is missing. Not every artwork has a thumbnail. Apologies! </p>
       </div>
     </article>
   </div>

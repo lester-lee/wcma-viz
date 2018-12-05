@@ -69,6 +69,7 @@ function updateThumbnail(id) {
   }
 }
 
+/* Card buttons */
 $('.CardNeighbors').on('click', function () {
   addNeighbors(saved_node);
 });
@@ -83,6 +84,8 @@ $('.CardClose').on('click', function () {
   $('.Card').removeClass('--active');
   is_locked = false;
 });
+
+/* Initialization */
 
 function chooseNodes() {
   // Randomly sample exhibit nodes
@@ -103,17 +106,17 @@ function chooseNodes() {
   $('.ModalStart').text("Start");
   $('.ModalStart').on('click', function () {
     // Show nodes to the user
-    $('.ModalText').hide();
-    $('.ModalTitle').text("Select exhibits:");
+    $('.--start .ModalText').hide();
+    $('.--start .ModalTitle').text("Select exhibits:");
     $('.ExhibitChoices').addClass('--active');
-    $('.ModalContent').append($('<button>', {
+    $('.--start .ModalContent').append($('<button>', {
       class: 'ExhibitSubmit',
       text: 'Submit'
     }));
   })
 }
 
-$('.SplashModal').on('click', '.ExhibitSubmit', function(){
+$('.Modal').on('click', '.ExhibitSubmit', function(){
   // Retrieve selected nodes
   let selected = [];
   $('.ExhibitChoices input:checked').each(function(){
@@ -129,13 +132,28 @@ $('.SplashModal').on('click', '.ExhibitSubmit', function(){
       return n.id;
     })
     init_graph();
-    $('.SplashModal').hide();
+    $('.Modal').removeClass('--active');
   }else{
     alert("Please choose at least one exhibit.");
   }
 });
 
-$('.SplashModal').on('click', '.ExhibitChoice', function() {
-  $input = $(this).children('input')[0];
+$('.Modal').on('click', '.ExhibitChoice', function() {
+  let $input = $(this).children('input')[0];
   $input.checked = !$input.checked;
 });
+
+$('.ModalClose').on('click', function(){
+  $('.Modal').removeClass('--active');
+});
+
+/* Modal Links */
+
+$('.ModalLink').on('click', function(){
+  let $a = $(this).find('a');
+  if ($a.attr('href') === '#about'){
+    $('.Modal.--about').addClass('--active');
+  }else if ($a.attr('href') === '#help'){
+    $('.Modal.--help').addClass('--active');
+  }
+})
