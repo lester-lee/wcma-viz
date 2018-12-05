@@ -91,8 +91,8 @@ function setup_d3() {
 }
 
 function init_graph() {
-  console.log(initial_nodes);
-  console.log(initial_node_ids);
+  // console.log(initial_nodes);
+  // console.log(initial_node_ids);
 
   let connected_node_ids = [];
 
@@ -116,7 +116,7 @@ function init_graph() {
   node_ids = _.union(initial_node_ids, connected_node_ids);
   links = initial_links;
 
-  console.log(nodes, links);
+  // console.log(nodes, links);
 
   // Update graph to reduce search later
   // console.log(graph_data);
@@ -174,7 +174,7 @@ function visualize() {
 
   simulation.force('link').links(links);
   simulation.alphaTarget(0.3).restart();
-  console.log("start");
+  // console.log("start");
 }
 
 function handleMouseOver(d, i) {
@@ -193,8 +193,8 @@ function handleMouseOut(d, i) {
 }
 
 function handleClick(d, i) {
-  console.log(d);
-  console.log(node_data[d._id]);
+  // console.log(d);
+  // console.log(node_data[d._id]);
   if (saved_node === d) {
     saved_node = null;
     saved_svg = null;
@@ -228,14 +228,14 @@ function addNeighbors(node) {
     return _.contains(connected_node_ids, n.id) &&
       !_.contains(node_ids, n.id);
   });
-  console.log("connected nodes", connected_nodes);
-  console.log("new_links", new_links);
+  // console.log("connected nodes", connected_nodes);
+  // console.log("new_links", new_links);
 
   if (connected_nodes.length > 0) {
-    console.log(nodes, links);
+    // console.log(nodes, links);
     nodes = _.union(connected_nodes, nodes);
     links = _.union(new_links, links);
-    console.log(nodes, links);
+    // console.log(nodes, links);
     visualize();
   }
 }
