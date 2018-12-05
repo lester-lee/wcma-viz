@@ -39,6 +39,10 @@ ul {
 
 a {
   text-decoration: none;
+  color: $base-c;
+  &:hover {
+    color: $accent-c;
+  }
 }
 
 @for $i from 1 through 6 {
@@ -94,8 +98,8 @@ button {
   border-left: 2vw solid $shadow-c;
   border-right: 2vw solid $shadow-c;
   width: 50em;
-  height: 30em;
-  padding: 1em 10em;
+  min-height: 30em;
+  padding: 1em 10em 7em;
   color: #fff;
   position: relative;
   button {
@@ -104,6 +108,28 @@ button {
     left: 50%;
     transform: translateX(-50%);
   }
+}
+
+.SplashModal.--help{
+  display: none;
+}
+
+/* Modal Links */
+.ModalLinks{
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  display: flex;
+  flex-flow: row;
+  color: $base-c;
+  z-index: 98;
+}
+
+.ModalLink{
+  margin: 0 .5em;
+  font-family: $title-f;
+  text-transform: uppercase;
+  font-size: 20px;
 }
 
 .ExhibitChoices {
