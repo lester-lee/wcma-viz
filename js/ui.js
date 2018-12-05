@@ -40,13 +40,21 @@ function updateCard(node) {
       ));
     }
 
+    $('.--medium').show();
+    $('.--dimensions').show();
+    $('.Thumbnail').show();
+
   } else if (node.node_type === "exhibit") {
     let data = exhibit_data[node._id];
     // console.log(data);
     $('.CardTitle').text(data.ExhTitle);
-    $('.CardBy').text(data.BeginISODate + " to " + data.EndISODate)
-    $('.CardMedium').text("")
-    $('.CardDimensions').text("");
+
+    let exhDates = `${data.BeginISODate} to ${data.EndISODate}`;
+    $('.CardBy').text(exhDates);
+
+    $('.--medium').hide();
+    $('.--dimensions').hide();
+    $('.Thumbnail').hide();
     $('.CardDescription').text(data.CurNotes);
   }
 }
@@ -96,6 +104,7 @@ function chooseNodes() {
   $('.ModalStart').on('click', function () {
     // Show nodes to the user
     $('.ModalText').hide();
+    $('.ModalTitle').text("Select exhibits:");
     $('.ExhibitChoices').addClass('--active');
     $('.ModalContent').append($('<button>', {
       class: 'ExhibitSubmit',

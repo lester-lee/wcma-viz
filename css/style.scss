@@ -154,14 +154,13 @@ input[type=checkbox] {
 /* Information */
 
 .Info {
-  display: grid;
-  grid-template:
-    "thumb card"55vh "button button"1fr / 1fr 1fr;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
   position: fixed;
-  top: 10vh;
-  left: 5vw;
-  width: 30vw;
-  height: 55vh;
+  padding: 10vh 5vh;
+  width: 40em;
+  height: 100vh;
 
   &Buttons {
     grid-area: button;
@@ -174,6 +173,7 @@ input[type=checkbox] {
   border: 1px solid $base-c;
   padding: 10px;
   overflow-y: scroll;
+  min-height: 20%;
 
   p {
     margin: 0;
@@ -189,11 +189,12 @@ input[type=checkbox] {
     width: 100%;
     color: #fff;
     padding: 10px;
+    grid-area: title;
   }
 
   &By {
     color: $base-c;
-    margin-bottom: 1em;
+    margin: .5em 0;
   }
 
   &Section {
@@ -207,6 +208,7 @@ input[type=checkbox] {
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  height: 50%;
 
   &Image {
     max-width: 100%;
@@ -219,7 +221,7 @@ input[type=checkbox] {
     display: flex;
     flex-flow: row;
     justify-content: space-between;
-    width: 70%;
+    width: 50%;
     margin: 0 auto 5px;
 
     .ColorSample {

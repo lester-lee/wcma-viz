@@ -14,7 +14,7 @@ title: WCMA Visualization
 <body>
   <div class="SplashModal">
     <article class="ModalContent">
-      <h2>Explore WCMA</h2>
+      <h2 class="ModalTitle">Explore WCMA</h2>
       <div class="ModalText">
         <p>flavor text about artwork connections and exhibits.</p>
         <p>You will be presented with five exhibits from which you can choose from to start your exploration. A social network of artworks and exhibitions will be generated based on your choices. Each exhibition is linked to artworks that were shown, and each artwork is linked to exhibitions that it was shown in.
@@ -27,24 +27,32 @@ title: WCMA Visualization
       </ul>
     </article>
   </div>
+  <div class="SplashModal --help">
+    <article class="ModalContent">
+      <h2 class="ModalTitle">Help</h2>
+      <div class="ModalText">
+        
+      </div>
+    </article>
+  </div>
   <section class="Info">
+    <h2 class="CardTitle">Sample</h2>
+    <h3 class="CardBy">Artist, <span class="CardDate"></span></h3>
     <div class="Thumbnail">
       <img class="ThumbnailImage" alt="Thumbnail of described image" src="">
       <ul class="ThumbnailColors">
       </ul>
     </div>
-    <div class="Card">
-      <h2 class="CardTitle">Sample</h2>
-      <h3 class="CardBy">Artist, <span class="CardDate"></span></h3>
-      <div class="CardSection">
+    <div class="Card">      
+      <div class="CardSection --medium">
         <label>Medium</label>
         <p class="CardMedium">oil</p>
       </div>
-      <div class="CardSection">
+      <div class="CardSection --dimensions">
         <label>Dimensions</label>
         <p class="CardDimensions"></p>
       </div>
-      <div class="CardSection">
+      <div class="CardSection --description">
         <label>Description</label>
         <p class="CardDescription"></p>
       </div>
@@ -54,7 +62,11 @@ title: WCMA Visualization
   <button class="CardNeighbors">Add Neighbors</button>
   <button class="CardExpand">Load random node</button>
 </div>
-  </section> 
+  </section>
+  <ul class="ModalLinks">
+    <li class="ModalLink"><h4>About</h4></li>
+    <li class="ModalLink"><h4>Help</h4></li>
+  </ul> 
   <svg class="Collection"></svg>
   <script src="{{site.baseurl}}/lib/jquery-3.3.1.min.js"></script>
   <script src="{{site.baseurl}}/lib/underscore-min.js"></script>
