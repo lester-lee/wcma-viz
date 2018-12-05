@@ -1,5 +1,5 @@
 ---
-title: WCMA Visualization
+title: Explore WCMA
 ---
 <html lang="en">
 
@@ -17,10 +17,14 @@ title: WCMA Visualization
     <article class="ModalContent">
       <h2 class="ModalTitle">Explore WCMA</h2>
       <div class="ModalText">
-        <p>Here's a chance to discover more about the collection of the <a href="https://wcma.williams.edu/">Williams College Museum of Art</a>!</p>
-        <p>You will be presented with five exhibits from which you can choose from to start your exploration. A social network of artworks and exhibitions will be generated based on your choices. Each exhibition is linked to artworks that were shown, and each artwork is linked to exhibitions that it was shown in.
+        <p>Here's a chance to discover more about the collection of the <a href="https://wcma.williams.edu/">Williams
+            College Museum of Art</a>!</p>
+        <p>You will be presented with five exhibits from which you can choose from to start your exploration. A social
+          network of artworks and exhibitions will be generated based on your choices. Each exhibition is linked to
+          artworks that were shown, and each artwork is linked to exhibitions that it was shown in.
         </p>
-        <p>Please feel free to see their connections, find a random piece you like, or even start over from the beginning to get a new set of exhibits!</p>
+        <p>Please feel free to see their connections, find a random piece you like, or even start over from the
+          beginning to get a new set of exhibits!</p>
         <button class="ModalStart">Loading...</button>
       </div>
       <ul class="ExhibitChoices">
@@ -33,37 +37,45 @@ title: WCMA Visualization
         <span class="ModalClose">❌</span>
       </h2>
       <div class="ModalText">
-          <h3 id="the-network">The Network</h3>
-          <p>Each node (circle) represents either an artwork or an exhibit. The exhibit nodes are pink, while the artwork nodes will have a color that corresponds to its thumbnail.</p>
-          <p>A connection between two nodes means that an artwork was shown in the connected exhibition.</p>
-          <h3 id="interactions">Interactions</h3>
-          <ul>
+        <h3 id="the-network">The Network</h3>
+        <p>Each node (circle) represents either an artwork or an exhibit. The exhibit nodes are pink, while the artwork
+          nodes will have a color that corresponds to its thumbnail.</p>
+        <p>A connection between two nodes means that an artwork was shown in the connected exhibition.</p>
+        <h3 id="interactions">Interactions</h3>
+        <ul>
           <li><strong>Hover</strong> over a node to view its details.</li>
           <li><strong>Click</strong> on a node to select it.</li>
           <li><strong>Scroll</strong> to zoom in or out.</li>
           <li><strong>Drag</strong> a node to move it around.</li>
           <li><strong>Search WCMA</strong> will search the WCMA collection for the currently selected node.</li>
-          <li><strong>Add Neighbors</strong> will look for all nodes that are connected to the currently selected node, and add them to the graph.</li>
+          <li><strong>Add Neighbors</strong> will look for all nodes that are connected to the currently selected node,
+            and add them to the graph.</li>
           <li><strong>Load Random Node</strong> will randomly select a node and add it to the graph.</li>
-          </ul>
-          <h3 id="misc">Misc</h3>
-          <p>The data is incomplete, so not every node will have neighbors. Some exhibits might be empty because artwork data is missing. Not every artwork has a thumbnail. Apologies!</p>
-          
+        </ul>
+        <h3 id="misc">Misc</h3>
+        <p>The data is incomplete, so not every node will have neighbors. Some exhibits might be empty because artwork
+          data is missing. Not every artwork has a thumbnail. Apologies!</p>
+
       </div>
     </article>
   </div>
   <div class="Modal --about">
     <article class="ModalContent">
       <h2 class="ModalTitle">About
-          <span class="ModalClose">❌</span>        
+        <span class="ModalClose">❌</span>
       </h2>
       <div class="ModalText">
-          <p>I am <a href="https://www.lester-le.com">Lester Lee</a>, a Computer Science major at Williams College.</p>
-          <p>In Fall&#39;18, I did an independent study on information visualization with <a href="http://www.cs.williams.edu/~iris/">Professor Iris Howley</a>. More information about my independent study can be found on <a href="https://www.lester-lee.com/f2018-info-vis/">my blog</a>. This blog also contains my process for working on this project!</p>
-          <p>Much thanks to the <a href="https://github.com/wcmaart/collection">Williams College Museum of Art (WCMA)</a> for providing me with data and helping me out with this project!</p>
-          <p><strong>Explore WCMA</strong> is a way to find pieces in the collection that you haven&#39;t seen before by following an artwork&#39;s connections through exhibits. You can also get a quick sense of the color scheme of each exhibit! </p>
-          <p>The code for this visualization is available on <a href="https://github.com/lester-lee/wcma-viz">Github</a>.</p>
-          
+        <p>I am <a href="https://www.lester-le.com">Lester Lee</a>, a Computer Science major at Williams College.</p>
+        <p>In Fall&#39;18, I did an independent study on information visualization with <a href="http://www.cs.williams.edu/~iris/">Professor
+            Iris Howley</a>. More information about my independent study can be found on <a href="https://www.lester-lee.com/f2018-info-vis/">my
+            blog</a>. This blog also contains my process for working on this project!</p>
+        <p>Much thanks to the <a href="https://github.com/wcmaart/collection">Williams College Museum of Art (WCMA)</a>
+          for providing me with data and helping me out with this project!</p>
+        <p><strong>Explore WCMA</strong> is a way to find pieces in the collection that you haven&#39;t seen before by
+          following an artwork&#39;s connections through exhibits. You can also get a quick sense of the color scheme
+          of each exhibit! </p>
+        <p>The code for this visualization is available on <a href="https://github.com/lester-lee/wcma-viz">Github</a>.</p>
+
       </div>
     </article>
   </div>
@@ -75,7 +87,7 @@ title: WCMA Visualization
       <ul class="ThumbnailColors">
       </ul>
     </div>
-    <div class="Card">      
+    <div class="Card">
       <div class="CardSection --medium">
         <label>Medium</label>
         <p class="CardMedium">oil</p>
@@ -89,16 +101,17 @@ title: WCMA Visualization
         <p class="CardDescription"></p>
       </div>
     </div>
-<div class="InfoButtons">
-  <a class="InfoLink" href=""><button>Search WCMA</button></a>
-  <button class="CardNeighbors">Add Neighbors</button>
-  <button class="CardExpand">Load random node</button>
-</div>
+    <div class="InfoButtons">
+      <a class="InfoLink" href=""><button>Search WCMA</button></a>
+      <button class="CardNeighbors">Add Neighbors</button>
+      <button class="CardExpand">Load random node</button>
+    </div>
   </section>
   <ul class="ModalLinks">
+    <li class="ModalLink"><a href="/">Start Over</a></li>
     <li class="ModalLink"><a href="#about">About</a></li>
     <li class="ModalLink"><a href="#help">Help</a></li>
-  </ul> 
+  </ul>
   <svg class="Collection"></svg>
   <script src="{{site.baseurl}}/lib/jquery-3.3.1.min.js"></script>
   <script src="{{site.baseurl}}/lib/underscore-min.js"></script>
