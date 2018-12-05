@@ -46,7 +46,7 @@ function updateCard(node) {
 
   } else if (node.node_type === "exhibit") {
     let data = exhibit_data[node._id];
-    console.log(data);
+    // console.log(data);
     $('.CardTitle').text(data.ExhTitle);
 
     let exhDates = `${data.BeginISODate} to ${data.EndISODate}`;
