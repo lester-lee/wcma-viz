@@ -46,7 +46,7 @@ function updateCard(node) {
 
   } else if (node.node_type === "exhibit") {
     let data = exhibit_data[node._id];
-    // console.log(data);
+    console.log(data);
     $('.CardTitle').text(data.ExhTitle);
 
     let exhDates = `${data.BeginISODate} to ${data.EndISODate}`;
@@ -55,8 +55,9 @@ function updateCard(node) {
     $('.--medium').hide();
     $('.--dimensions').hide();
     $('.Thumbnail').hide();
-    let desc = `This is an exhibit. ${data.curNotes}`;
-    $('.CardDescription').text(desc);
+    let desc = data.CurNotes ? data.CurNotes : "Description not available.";
+    let desc_text = `This is an exhibit. ${desc}`;
+    $('.CardDescription').text(desc_text);
   }
   $('.Info').addClass('--active');
 }
