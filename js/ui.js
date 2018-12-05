@@ -57,6 +57,7 @@ function updateCard(node) {
     $('.Thumbnail').hide();
     $('.CardDescription').text(data.CurNotes);
   }
+  $('.Info').addClass('--active');
 }
 
 function updateThumbnail(id) {
